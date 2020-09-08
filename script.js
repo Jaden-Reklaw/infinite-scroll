@@ -1,7 +1,6 @@
 //Create a helper function to assist in the creation of elements
 function setAttributes(element, attributes) {
     for(const key in attributes) {
-        console.log(attributes[key]);
         element.setAttribute(key, attributes[key]);
     }
 }
@@ -51,6 +50,14 @@ async function getPhotos() {
         console.log(error);
     }
 }
+
+// Check to see if scrolling near bottom of the page, then load more phots
+window.addEventListener('scroll',() => {
+   if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+       getPhotos();
+       console.log('load more photos!');
+   }
+});
 
 //On load
 getPhotos();
